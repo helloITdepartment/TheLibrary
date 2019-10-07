@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+extension String{
+    func distanceTo(other: String) -> Int{
+        return 0
+    }
+}

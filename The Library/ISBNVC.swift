@@ -12,8 +12,9 @@ class ISBNVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "via ISBN"
         // Do any additional setup after loading the view.
+        view.backgroundColor = .blue
     }
     
 

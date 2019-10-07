@@ -7,3 +7,8 @@
 //
 
 import Foundation
+class Location{
+    var Room: Room = .Den
+    var Row: Int?
+    var Column: Int?
+}

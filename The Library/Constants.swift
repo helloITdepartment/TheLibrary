@@ -6,4 +6,11 @@
 //  Copyright © 2019 Q Technologies. All rights reserved.
 //
 
-import Foundation
+import UIKit
+enum Room{
+    case Den
+    case GuestRoom
+    case LentOut(to: String)
+}
+
+

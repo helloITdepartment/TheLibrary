@@ -13,6 +13,13 @@
 		CFBF6F002336B03B00291558 /* The_Library.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6EFE2336B03B00291558 /* The_Library.xcdatamodeld */; };
 		CFBF6F022336B03D00291558 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBF6F012336B03D00291558 /* Assets.xcassets */; };
 		CFBF6F052336B03D00291558 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBF6F032336B03D00291558 /* LaunchScreen.storyboard */; };
+		CFBF6F0F2336B0F200291558 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6F0E2336B0F200291558 /* Book.swift */; };
+		CFBF6F132336B87600291558 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6F122336B87600291558 /* Location.swift */; };
+		CFBF6F152336B9E100291558 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6F142336B9E100291558 /* Extensions.swift */; };
+		CFBF6F1723377A0500291558 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6F1623377A0500291558 /* Constants.swift */; };
+		CFBF6F192337812100291558 /* AddBookEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6F182337812100291558 /* AddBookEntryVC.swift */; };
+		CFC7EBB3234A5DF300C95E47 /* ISBNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */; };
+		CFC7EBB5234A5E0A00C95E47 /* ManualEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		CFBF6F012336B03D00291558 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFBF6F042336B03D00291558 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFBF6F062336B03D00291558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFBF6F0E2336B0F200291558 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		CFBF6F122336B87600291558 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		CFBF6F142336B9E100291558 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CFBF6F1623377A0500291558 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CFBF6F182337812100291558 /* AddBookEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookEntryVC.swift; sourceTree = "<group>"; };
+		CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISBNVC.swift; sourceTree = "<group>"; };
+		CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualEntryVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +70,16 @@
 		CFBF6EF62336B03B00291558 /* The Library */ = {
 			isa = PBXGroup;
 			children = (
+				CFBF6F0E2336B0F200291558 /* Book.swift */,
+				CFBF6F122336B87600291558 /* Location.swift */,
+				CFBF6F142336B9E100291558 /* Extensions.swift */,
+				CFBF6F1623377A0500291558 /* Constants.swift */,
 				CFBF6EF72336B03B00291558 /* AppDelegate.swift */,
 				CFBF6EF92336B03B00291558 /* ViewController.swift */,
+				CFBF6F182337812100291558 /* AddBookEntryVC.swift */,
 				CFBF6EFB2336B03B00291558 /* Main.storyboard */,
+				CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */,
+				CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */,
 				CFBF6F012336B03D00291558 /* Assets.xcassets */,
 				CFBF6F032336B03D00291558 /* LaunchScreen.storyboard */,
 				CFBF6F062336B03D00291558 /* Info.plist */,
@@ -138,9 +159,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBF6F0F2336B0F200291558 /* Book.swift in Sources */,
 				CFBF6F002336B03B00291558 /* The_Library.xcdatamodeld in Sources */,
 				CFBF6EFA2336B03B00291558 /* ViewController.swift in Sources */,
+				CFBF6F132336B87600291558 /* Location.swift in Sources */,
+				CFBF6F1723377A0500291558 /* Constants.swift in Sources */,
+				CFC7EBB5234A5E0A00C95E47 /* ManualEntryVC.swift in Sources */,
 				CFBF6EF82336B03B00291558 /* AppDelegate.swift in Sources */,
+				CFC7EBB3234A5DF300C95E47 /* ISBNVC.swift in Sources */,
+				CFBF6F192337812100291558 /* AddBookEntryVC.swift in Sources */,
+				CFBF6F152336B9E100291558 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 849KN7767H;
+				DEVELOPMENT_TEAM = 569W85DQKZ;
 				INFOPLIST_FILE = "The Library/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,7 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 849KN7767H;
+				DEVELOPMENT_TEAM = 569W85DQKZ;
 				INFOPLIST_FILE = "The Library/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -50,18 +50,11 @@
                                     <segment title="Manual"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label the first" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jey-5b-Eo7">
-                                <rect key="frame" x="154.5" y="438" width="105" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bBU-Id-fDi" firstAttribute="leading" secondItem="esp-VB-6VR" secondAttribute="leading" constant="20" id="F95-SG-Vdl"/>
                             <constraint firstItem="bBU-Id-fDi" firstAttribute="top" secondItem="esp-VB-6VR" secondAttribute="top" constant="16" id="frE-jv-XTh"/>
-                            <constraint firstItem="jey-5b-Eo7" firstAttribute="centerX" secondItem="mgx-Lg-csj" secondAttribute="centerX" id="sod-2q-0Q7"/>
                             <constraint firstItem="esp-VB-6VR" firstAttribute="trailing" secondItem="bBU-Id-fDi" secondAttribute="trailing" constant="20" id="u1l-Lw-FIh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="esp-VB-6VR"/>

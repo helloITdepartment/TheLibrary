@@ -92,7 +92,13 @@ class AddBookEntryVC: UIViewController {
         do{
             let sanitized = try sanitize(ISBNField.text ?? "")
             print("Fetching book data for ISBN \(sanitized)...")
-        }catch{
+        }catch JBError.InvalicCharactersInISBN{
+            let isbnAlert = UIAlertController(title: "Whoops", message: "ISBNs should only have digits and maybe dashes", preferredStyle: .alert)
+            isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
+            
+            self.present(isbnAlert, animated: true, completion: nil)
+            
+        }catch JBError.IncorrectISBNLength{
             let isbnAlert = UIAlertController(title: "Whoops", message: "ISBNs are supposed to be either 10 or 13 digits long", preferredStyle: .alert)
             isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
             
@@ -102,10 +108,16 @@ class AddBookEntryVC: UIViewController {
     
     func sanitize(_ isbn: String) throws -> String {
         var ret = ""
+        var flag = false
         isbn.forEach { (c) in
             if(c.isNumber){
                 ret += "\(c)"
+            }else if(!(c == "-")){
+                flag = true
             }
+        }
+        if(flag){
+            throw JBError.InvalicCharactersInISBN
         }
         if(!(ret.count == 10 || ret.count == 13)){
             throw JBError.IncorrectISBNLength

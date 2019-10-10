@@ -15,5 +15,6 @@ enum Room{
 
 enum JBError: Error{
     case IncorrectISBNLength
+    case InvalicCharactersInISBN
 }
 

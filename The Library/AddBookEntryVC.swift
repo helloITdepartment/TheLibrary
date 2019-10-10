@@ -90,8 +90,55 @@ class AddBookEntryVC: UIViewController {
     
     @objc func submitISBN(){
         do{
+            
             let sanitized = try sanitize(ISBNField.text ?? "")
+            var book = Book(title: "Title", subtitle: nil, author: "Author", cover: nil, isbn: sanitized, location: Location())
             print("Fetching book data for ISBN \(sanitized)...")
+            
+            //If the ISBN was typed in corrently, let's fire off a request
+            let session = URLSession.shared
+            let url = URL(string: "https://openlibrary.org/api/books?bibkeys=ISBN:\(sanitized)&format=json&jscmd=data")!
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                //Check to make sure error!=nil
+                //Check to make 'Status Code' in response is between 200 and 299
+                
+//                print("Data: \(String(describing: data))")
+//                print("Response: \(String(describing: response))")
+//                print("Error: \(String(describing: error))")
+                
+                
+                guard let httpResponse = response as? HTTPURLResponse, let mime = httpResponse.mimeType, mime == "application/json" else {
+                    print("Wrong MIME type!")
+                    return
+                }
+                
+                if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
+//                    print(json)
+                    if let dictionary = json as? [String: Any] {
+                        
+//                        for (key, value) in dictionary {
+//                            // access all key / value pairs in dictionary
+//                            print("Key: \(key)")
+//                            print("Value: \(value)")
+//                        }
+
+                        if let oneLevelDeep = dictionary["ISBN:\(sanitized)"] as? [String: Any] {
+                            // access nested dictionary values by key
+                            print("One level deep decoded")
+                            if let twoLevelsDeep = oneLevelDeep["authors"] as? [ [String: Any] ] {
+                                print("Two levels deep decoded")
+                                book.Author = twoLevelsDeep[0]["name"] as! String
+                            }
+                        }
+                    }
+                }
+                
+                print(book.Author)
+                
+            }
+            task.resume()
+            
         }catch JBError.InvalicCharactersInISBN{
             let isbnAlert = UIAlertController(title: "Whoops", message: "ISBNs should only have digits and maybe dashes", preferredStyle: .alert)
             isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
@@ -103,6 +150,8 @@ class AddBookEntryVC: UIViewController {
             isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
             
             self.present(isbnAlert, animated: true, completion: nil)
+        }catch{
+            print(error)
         }
     }
     

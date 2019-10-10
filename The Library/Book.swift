@@ -14,6 +14,7 @@ class Book {
     var Cover: UIImage?
     var ISBN: String?
     var Location: Location?
+    var PublicationYear: String?
     
     init(title: String, subtitle: String?, author: String, cover: UIImage?, isbn: String?, location: Location) {
         Title = title

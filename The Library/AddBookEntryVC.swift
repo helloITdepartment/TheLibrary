@@ -16,6 +16,8 @@ class AddBookEntryVC: UIViewController {
     
     let ISBNField: UITextField = UITextField()
     
+    var book = Book(title: "Title", subtitle: nil, author: "Author", cover: nil, isbn: nil, location: Location())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -92,7 +94,6 @@ class AddBookEntryVC: UIViewController {
         do{
             
             let sanitized = try sanitize(ISBNField.text ?? "")
-            var book = Book(title: "Title", subtitle: nil, author: "Author", cover: nil, isbn: sanitized, location: Location())
             print("Fetching book data for ISBN \(sanitized)...")
             
             //If the ISBN was typed in corrently, let's fire off a request
@@ -116,23 +117,45 @@ class AddBookEntryVC: UIViewController {
                 if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
 //                    print(json)
                     if let dictionary = json as? [String: Any] {
+                        self.book.ISBN = sanitized
 
                         if let oneLevelDeep = dictionary["ISBN:\(sanitized)"] as? [String: Any] {
                             // access nested dictionary values by key
                             print("One level deep decoded")
+                            //Author
                             if let authorObject = oneLevelDeep["authors"] as? [ [String: Any] ] {
-                                book.Author = authorObject[0]["name"] as! String
+                                self.book.Author = authorObject[0]["name"] as! String
                             }
                             
+                            //Title
                             if let title = oneLevelDeep["title"] as? String {
-                                book.Title = title
+                                self.book.Title = title
+                            }
+                            
+                            //Subtitle
+                            if let subtitle = oneLevelDeep["subtitle"] as? String {
+                                self.book.Subtitle = subtitle
+                            }
+                            //Cover
+                            //Yikes this is gunna be tough
+                            
+                            //Publication year
+                            if let publicationYear = oneLevelDeep["publish_date"] as? String {
+                                self.book.PublicationYear = publicationYear
                             }
                         }
                     }
                 }
+                let confirmationAlert = UIAlertController(title: "This is what we found:", message: "\(self.book.Title) by \(self.book.Author). Does that look right?", preferredStyle: .alert)
                 
-                print(book.Author)
-                print(book.Title)
+                DispatchQueue.main.async {
+                    self.present(confirmationAlert, animated: true, completion: nil)
+                }
+                
+                print(self.book.Author)
+                print(self.book.Title)
+                print(self.book.Subtitle ?? "No subtitle")
+                print(self.book.PublicationYear ?? "No publication year")
                 
             }
             task.resume()

@@ -116,25 +116,23 @@ class AddBookEntryVC: UIViewController {
                 if let json = try? JSONSerialization.jsonObject(with: data!, options: []) {
 //                    print(json)
                     if let dictionary = json as? [String: Any] {
-                        
-//                        for (key, value) in dictionary {
-//                            // access all key / value pairs in dictionary
-//                            print("Key: \(key)")
-//                            print("Value: \(value)")
-//                        }
 
                         if let oneLevelDeep = dictionary["ISBN:\(sanitized)"] as? [String: Any] {
                             // access nested dictionary values by key
                             print("One level deep decoded")
-                            if let twoLevelsDeep = oneLevelDeep["authors"] as? [ [String: Any] ] {
-                                print("Two levels deep decoded")
-                                book.Author = twoLevelsDeep[0]["name"] as! String
+                            if let authorObject = oneLevelDeep["authors"] as? [ [String: Any] ] {
+                                book.Author = authorObject[0]["name"] as! String
+                            }
+                            
+                            if let title = oneLevelDeep["title"] as? String {
+                                book.Title = title
                             }
                         }
                     }
                 }
                 
                 print(book.Author)
+                print(book.Title)
                 
             }
             task.resume()

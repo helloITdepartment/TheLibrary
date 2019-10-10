@@ -70,7 +70,7 @@ class AddBookEntryVC: UIViewController {
         submitISBNButton.setTitle("Why you still holding the button?", for: .highlighted)
         submitISBNButton.setTitleColor(.blue, for: .highlighted)
         
-        submitISBNButton.frame = CGRect(x: view.frame.width/2 - 75, y: view.safeAreaInsets.top+89+50, width: 150, height: 40)
+        submitISBNButton.frame = CGRect(x: view.frame.width/2 - 150, y: view.safeAreaInsets.top+89+50, width: 300, height: 40)
         
         submitISBNButton.addTarget(self, action: #selector(submitISBN), for: .touchUpInside)
         view.addSubview(submitISBNButton)
@@ -148,6 +148,12 @@ class AddBookEntryVC: UIViewController {
                 }
                 let confirmationAlert = UIAlertController(title: "This is what we found:", message: "\(self.book.Title) by \(self.book.Author). Does that look right?", preferredStyle: .alert)
                 
+                confirmationAlert.addAction(UIAlertAction(title: "Yup!", style: .default, handler: { (action) in
+                    //TODO:- gotta actually put the book in the database here
+                    print(self.book)
+                }))
+                confirmationAlert.addAction(UIAlertAction(title: "Hm.. Let me try again", style: .destructive, handler: nil))
+                
                 DispatchQueue.main.async {
                     self.present(confirmationAlert, animated: true, completion: nil)
                 }
@@ -180,7 +186,7 @@ class AddBookEntryVC: UIViewController {
         var ret = ""
         var flag = false
         isbn.forEach { (c) in
-            if(c.isNumber){
+            if(c.isNumber || c.lowercased() == "x"){
                 ret += "\(c)"
             }else if(!(c == "-")){
                 flag = true

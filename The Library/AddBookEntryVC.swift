@@ -35,14 +35,19 @@ class AddBookEntryVC: UIViewController {
             lastSelected = currentlySelected
             
             if(currentlySelected == 0){//... and now it's the ISBN segment that was selected
+                //TODO:- First check all the fields and check if they're empty, and if they're not, throw an alert
+                //Alert should have a "don't switch" and "switch anyway" button
                 displayISBNView()
             }else{//... and now it's the Manual segment that's selected
+                //TODO:- First check all the fields and check if they're empty, and if they're not, throw an alert
+                //Alert should have a "don't switch" and "switch anyway" button
                 displayManualView()
             }
             
         }//Otherwise no need ot update anything
     }
     
+    //MARK:- ISBN 
     func displayISBNView(){
         view.subviews.forEach { (awaitingFate) in
             if(!(awaitingFate is UISegmentedControl)){
@@ -69,6 +74,7 @@ class AddBookEntryVC: UIViewController {
         view.addSubview(submitISBNButton)
     }
     
+    //MARK:- Manual View
     func displayManualView(){
         view.subviews.forEach { (awaitingFate) in
             if(!(awaitingFate is UISegmentedControl)){
@@ -83,12 +89,28 @@ class AddBookEntryVC: UIViewController {
     }
     
     @objc func submitISBN(){
-        let sanitized = sanitize(ISBNField.text ?? "")
-        print("Fetching book data for ISBN \(sanitized)...")
+        do{
+            let sanitized = try sanitize(ISBNField.text ?? "")
+            print("Fetching book data for ISBN \(sanitized)...")
+        }catch{
+            let isbnAlert = UIAlertController(title: "Whoops", message: "ISBNs are supposed to be either 10 or 13 digits long", preferredStyle: .alert)
+            isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
+            
+            self.present(isbnAlert, animated: true, completion: nil)
+        }
     }
     
-    func sanitize(_ isbn: String) -> String {
-            return isbn
+    func sanitize(_ isbn: String) throws -> String {
+        var ret = ""
+        isbn.forEach { (c) in
+            if(c.isNumber){
+                ret += "\(c)"
+            }
+        }
+        if(!(ret.count == 10 || ret.count == 13)){
+            throw JBError.IncorrectISBNLength
+        }
+        return ret
     }
     
     func setupSegmentedControl(){

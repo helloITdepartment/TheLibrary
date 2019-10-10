@@ -13,4 +13,7 @@ enum Room{
     case LentOut(to: String)
 }
 
+enum JBError: Error{
+    case IncorrectISBNLength
+}
 

@@ -18,12 +18,16 @@ class AddBookEntryVC: UIViewController {
     
     var book = Book(title: "Title", subtitle: nil, author: "Author", cover: nil, isbn: nil, location: Location())
     
+    let loadingSpinner = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         //setupSegmentedControl()
         entryModeSwitcher.addTarget(self, action: #selector(switcherWasTapped), for: .valueChanged)
+        
+        loadingSpinner.frame = CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 50, width: 50, height: 50)
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -91,6 +95,10 @@ class AddBookEntryVC: UIViewController {
     }
     
     @objc func submitISBN(){
+        //show spinner
+        view.addSubview(loadingSpinner)
+        loadingSpinner.startAnimating()
+
         do{
             
             let sanitized = try sanitize(ISBNField.text ?? "")
@@ -146,6 +154,11 @@ class AddBookEntryVC: UIViewController {
                         }
                     }
                 }
+                //Stop spinner
+                DispatchQueue.main.async {
+                    self.loadingSpinner.stopAnimating()
+                }
+                
                 let confirmationAlert = UIAlertController(title: "This is what we found:", message: "\(self.book.Title) by \(self.book.Author). Does that look right?", preferredStyle: .alert)
                 
                 confirmationAlert.addAction(UIAlertAction(title: "Yup!", style: .default, handler: { (action) in
@@ -167,17 +180,32 @@ class AddBookEntryVC: UIViewController {
             task.resume()
             
         }catch JBError.InvalicCharactersInISBN{
+            //Stop spinner
+            DispatchQueue.main.async {
+                self.loadingSpinner.stopAnimating()
+            }
+            
             let isbnAlert = UIAlertController(title: "Whoops", message: "ISBNs should only have digits and maybe dashes", preferredStyle: .alert)
             isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
             
             self.present(isbnAlert, animated: true, completion: nil)
             
         }catch JBError.IncorrectISBNLength{
+            //Stop spinner
+            DispatchQueue.main.async {
+                self.loadingSpinner.stopAnimating()
+            }
+            
             let isbnAlert = UIAlertController(title: "Whoops", message: "ISBNs are supposed to be either 10 or 13 digits long", preferredStyle: .alert)
             isbnAlert.addAction(UIAlertAction(title: "Got it", style: .default))
             
             self.present(isbnAlert, animated: true, completion: nil)
         }catch{
+            //Stop spinner
+            DispatchQueue.main.async {
+                self.loadingSpinner.stopAnimating()
+            }
+            
             print(error)
         }
     }

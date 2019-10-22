@@ -171,6 +171,11 @@ class AddBookEntryVC: UIViewController {
                     print(self.book.PublicationYear ?? "No publication year")
                     print("Database:")
                     print(Database.library)
+                    
+                    let p = self.presentingViewController as! UINavigationController
+                    let h = p.children[0] as! UITableViewController
+                    h.tableView.reloadData()
+                    
                     self.dismiss(animated: true, completion: nil)
                 }))
                 

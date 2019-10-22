@@ -6,10 +6,11 @@
 //  Copyright © 2019 Q Technologies. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension String{
     func distanceTo(other: String) -> Int{
         return 0
     }
 }
+

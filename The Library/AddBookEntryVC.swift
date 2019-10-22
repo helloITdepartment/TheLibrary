@@ -113,11 +113,6 @@ class AddBookEntryVC: UIViewController {
                 //Check to make sure error!=nil
                 //Check to make 'Status Code' in response is between 200 and 299
                 
-//                print("Data: \(String(describing: data))")
-//                print("Response: \(String(describing: response))")
-//                print("Error: \(String(describing: error))")
-                
-                
                 guard let httpResponse = response as? HTTPURLResponse, let mime = httpResponse.mimeType, mime == "application/json" else {
                     print("Wrong MIME type!")
                     return
@@ -130,7 +125,7 @@ class AddBookEntryVC: UIViewController {
 
                         if let oneLevelDeep = dictionary["ISBN:\(sanitized)"] as? [String: Any] {
                             // access nested dictionary values by key
-                            print("One level deep decoded")
+                            //print("One level deep decoded")
                             //Author
                             if let authorObject = oneLevelDeep["authors"] as? [ [String: Any] ] {
                                 self.book.Author = authorObject[0]["name"] as! String
@@ -164,14 +159,25 @@ class AddBookEntryVC: UIViewController {
                 
                 confirmationAlert.addAction(UIAlertAction(title: "Yup!", style: .default, handler: { (action) in
                     //TODO:- gotta actually put the book in the database here
-                    print("Appending to database:")
+                    //print("Appending to database:")
                     Database.library.append(self.book)
-                    print(self.book.Author)
-                    print(self.book.Title)
-                    print(self.book.Subtitle ?? "No subtitle")
-                    print(self.book.PublicationYear ?? "No publication year")
-                    print("Database:")
-                    print(Database.library)
+                    //print(self.book.Author)
+                    //print(self.book.Title)
+                    //print(self.book.Subtitle ?? "No subtitle")
+                    //print(self.book.PublicationYear ?? "No publication year")
+                    //print("Database:")
+                    //print(Database.library)
+                    
+                    let encoder = JSONEncoder()
+                    var data = Data()
+                    do{
+                        data = try encoder.encode(self.book)
+                    }catch{
+                        print(error)
+                    }
+                    
+                    Database.saveToFile(str: Database.readFromFile() + "\nTest\(Int.random(in: 1...100))")
+                    
                     
                     let p = self.presentingViewController as! UINavigationController
                     let h = p.children[0] as! UITableViewController
@@ -186,10 +192,10 @@ class AddBookEntryVC: UIViewController {
                     self.present(confirmationAlert, animated: true, completion: nil)
                 }
                 
-                print(self.book.Author)
-                print(self.book.Title)
-                print(self.book.Subtitle ?? "No subtitle")
-                print(self.book.PublicationYear ?? "No publication year")
+                //print(self.book.Author)
+                //print(self.book.Title)
+                //print(self.book.Subtitle ?? "No subtitle")
+                //print(self.book.PublicationYear ?? "No publication year")
                 
             }
             task.resume()
@@ -221,7 +227,7 @@ class AddBookEntryVC: UIViewController {
                 self.loadingSpinner.stopAnimating()
             }
             
-            print(error)
+            //print(error)
         }
     }
     

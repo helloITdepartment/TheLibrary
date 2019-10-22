@@ -7,8 +7,8 @@
 //
 
 import Foundation
-class Location{
-    var Room: Room = .Den
+class Location: Codable{
+    //var Room: Room = .Den
     var Row: Int?
     var Column: Int?
 }

@@ -20,6 +20,7 @@ class HomepageVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         print("Tableview did load")
+        print("Database: \(Database.readFromFile())")
     }
 
     // MARK: - Table view data source
@@ -42,6 +43,10 @@ class HomepageVC: UITableViewController {
         cell.textLabel?.text = Database.library[indexPath.row].Title
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Database: \(Database.readFromFile())")
     }
 
     /*

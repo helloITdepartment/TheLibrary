@@ -7,11 +7,11 @@
 //
 
 import UIKit
-class Book{
+class Book: Codable{
     var Title: String
     var Subtitle: String?
     var Author: String
-    var Cover: UIImage?
+    //var Cover: UIImage?
     var ISBN: String?
     var Location: Location?
     var PublicationYear: String?
@@ -20,8 +20,16 @@ class Book{
         Title = title
         Subtitle = subtitle
         Author = author
-        Cover = cover
         ISBN = isbn
         Location = location
     }
+    
+//    init(title: String, subtitle: String?, author: String, cover: UIImage?, isbn: String?, location: Location) {
+//        Title = title
+//        Subtitle = subtitle
+//        Author = author
+//        Cover = cover
+//        ISBN = isbn
+//        Location = location
+//    }
 }

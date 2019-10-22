@@ -20,6 +20,8 @@
 		CFBF6F192337812100291558 /* AddBookEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBF6F182337812100291558 /* AddBookEntryVC.swift */; };
 		CFC7EBB3234A5DF300C95E47 /* ISBNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */; };
 		CFC7EBB5234A5E0A00C95E47 /* ManualEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */; };
+		CFE1F3C7235C7A0200E353C6 /* database.json in Resources */ = {isa = PBXBuildFile; fileRef = CFE1F3C6235C7A0200E353C6 /* database.json */; };
+		CFE1F3C9235F27CF00E353C6 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1F3C8235F27CF00E353C6 /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		CFBF6F182337812100291558 /* AddBookEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookEntryVC.swift; sourceTree = "<group>"; };
 		CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISBNVC.swift; sourceTree = "<group>"; };
 		CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualEntryVC.swift; sourceTree = "<group>"; };
+		CFE1F3C6235C7A0200E353C6 /* database.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = database.json; sourceTree = "<group>"; };
+		CFE1F3C8235F27CF00E353C6 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,20 +74,22 @@
 		CFBF6EF62336B03B00291558 /* The Library */ = {
 			isa = PBXGroup;
 			children = (
+				CFBF6EF92336B03B00291558 /* ViewController.swift */,
+				CFE1F3C8235F27CF00E353C6 /* Database.swift */,
+				CFE1F3C6235C7A0200E353C6 /* database.json */,
+				CFBF6F182337812100291558 /* AddBookEntryVC.swift */,
 				CFBF6F0E2336B0F200291558 /* Book.swift */,
 				CFBF6F122336B87600291558 /* Location.swift */,
 				CFBF6F142336B9E100291558 /* Extensions.swift */,
 				CFBF6F1623377A0500291558 /* Constants.swift */,
-				CFBF6EF72336B03B00291558 /* AppDelegate.swift */,
-				CFBF6EF92336B03B00291558 /* ViewController.swift */,
-				CFBF6F182337812100291558 /* AddBookEntryVC.swift */,
 				CFBF6EFB2336B03B00291558 /* Main.storyboard */,
-				CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */,
-				CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */,
 				CFBF6F012336B03D00291558 /* Assets.xcassets */,
 				CFBF6F032336B03D00291558 /* LaunchScreen.storyboard */,
 				CFBF6F062336B03D00291558 /* Info.plist */,
 				CFBF6EFE2336B03B00291558 /* The_Library.xcdatamodeld */,
+				CFBF6EF72336B03B00291558 /* AppDelegate.swift */,
+				CFC7EBB2234A5DF300C95E47 /* ISBNVC.swift */,
+				CFC7EBB4234A5E0A00C95E47 /* ManualEntryVC.swift */,
 			);
 			path = "The Library";
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 			files = (
 				CFBF6F052336B03D00291558 /* LaunchScreen.storyboard in Resources */,
 				CFBF6F022336B03D00291558 /* Assets.xcassets in Resources */,
+				CFE1F3C7235C7A0200E353C6 /* database.json in Resources */,
 				CFBF6EFD2336B03B00291558 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFBF6F0F2336B0F200291558 /* Book.swift in Sources */,
+				CFE1F3C9235F27CF00E353C6 /* Database.swift in Sources */,
 				CFBF6F002336B03B00291558 /* The_Library.xcdatamodeld in Sources */,
 				CFBF6EFA2336B03B00291558 /* ViewController.swift in Sources */,
 				CFBF6F132336B87600291558 /* Location.swift in Sources */,

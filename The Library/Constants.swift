@@ -7,13 +7,16 @@
 //
 
 import UIKit
+
+//MARK:- enum Room
 enum Room{
     case Den
     case GuestRoom
     case LentOut(to: String)
 }
 
-enum JBError: Error{
+//MARK:- ISBNError
+enum ISBNError: Error{
     case IncorrectISBNLength
     case InvalicCharactersInISBN
 }

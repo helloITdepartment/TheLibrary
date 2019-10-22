@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class Book {
+class Book{
     var Title: String
     var Subtitle: String?
     var Author: String

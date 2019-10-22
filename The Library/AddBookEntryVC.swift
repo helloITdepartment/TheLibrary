@@ -163,8 +163,17 @@ class AddBookEntryVC: UIViewController {
                 
                 confirmationAlert.addAction(UIAlertAction(title: "Yup!", style: .default, handler: { (action) in
                     //TODO:- gotta actually put the book in the database here
-                    print(self.book)
+                    print("Appending to database:")
+                    Database.library.append(self.book)
+                    print(self.book.Author)
+                    print(self.book.Title)
+                    print(self.book.Subtitle ?? "No subtitle")
+                    print(self.book.PublicationYear ?? "No publication year")
+                    print("Database:")
+                    print(Database.library)
+                    self.dismiss(animated: true, completion: nil)
                 }))
+                
                 confirmationAlert.addAction(UIAlertAction(title: "Hm.. Let me try again", style: .destructive, handler: nil))
                 
                 DispatchQueue.main.async {
@@ -179,7 +188,7 @@ class AddBookEntryVC: UIViewController {
             }
             task.resume()
             
-        }catch JBError.InvalicCharactersInISBN{
+        }catch ISBNError.InvalicCharactersInISBN{
             //Stop spinner
             DispatchQueue.main.async {
                 self.loadingSpinner.stopAnimating()
@@ -190,7 +199,7 @@ class AddBookEntryVC: UIViewController {
             
             self.present(isbnAlert, animated: true, completion: nil)
             
-        }catch JBError.IncorrectISBNLength{
+        }catch ISBNError.IncorrectISBNLength{
             //Stop spinner
             DispatchQueue.main.async {
                 self.loadingSpinner.stopAnimating()
@@ -221,10 +230,10 @@ class AddBookEntryVC: UIViewController {
             }
         }
         if(flag){
-            throw JBError.InvalicCharactersInISBN
+            throw ISBNError.InvalicCharactersInISBN
         }
         if(!(ret.count == 10 || ret.count == 13)){
-            throw JBError.IncorrectISBNLength
+            throw ISBNError.IncorrectISBNLength
         }
         return ret
     }

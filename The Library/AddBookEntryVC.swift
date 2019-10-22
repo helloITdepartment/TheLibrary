@@ -27,7 +27,7 @@ class AddBookEntryVC: UIViewController {
         //setupSegmentedControl()
         entryModeSwitcher.addTarget(self, action: #selector(switcherWasTapped), for: .valueChanged)
         
-        loadingSpinner.frame = CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 50, width: 50, height: 50)
+        loadingSpinner.frame = CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 - 150, width: 50, height: 50)
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -65,6 +65,7 @@ class AddBookEntryVC: UIViewController {
         ISBNField.placeholder = "10- or 13-digit ISBN"
         ISBNField.frame = CGRect(x: 20, y: view.safeAreaInsets.top+89, width: view.frame.width-40, height: 50)
         //ISBNField.topAnchor.constraint(equalTo: entryModeSwitcher.bottomAnchor).isActive = true
+        ISBNField.keyboardType = .numbersAndPunctuation
         view.addSubview(ISBNField)
         
         let submitISBNButton = UIButton()
